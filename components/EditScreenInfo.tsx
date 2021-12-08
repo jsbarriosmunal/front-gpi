@@ -6,10 +6,13 @@ import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
+//import logo from './assets/logo.png';
+
 export default function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>
       <View style={styles.getStartedContainer}>
+
         <Text
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
@@ -28,7 +31,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)">
-          Change any of the text, save the file, and your app will automatically update.
+          Sistema de Información para la Gestión de Proyectos de Investigación | G.P.I. Tech
         </Text>
       </View>
 
@@ -77,4 +80,10 @@ const styles = StyleSheet.create({
   helpLinkText: {
     textAlign: 'center',
   },
+  // logo: {
+  //   width: 15%;
+  //   display: block;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // },
 });

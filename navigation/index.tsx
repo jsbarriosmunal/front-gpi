@@ -12,12 +12,15 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
+import TeamScreen from '../screens/TeamScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import HomeScreen from '../screens/HomeScreen';
+import UsersScreen from '../screens/UsersScreen';
+import ProjectsScreen from '../screens/ProjectsScreen';
+import RegistrationsScreen from '../screens/RegistrationsScreen';
+import ProgressScreen from '../screens/ProgressScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -39,9 +42,9 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Parece que hubo un error...' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Equipo" component={TeamScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -58,24 +61,24 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="Home"
+        component={HomeScreen}
+        options={({ navigation }: RootTabScreenProps<'Home'>) => ({
+          title: 'Inicio',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('Equipo')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
               <FontAwesome
-                name="info-circle"
+                name="graduation-cap"
                 size={25}
                 color={Colors[colorScheme].text}
                 style={{ marginRight: 15 }}
@@ -85,11 +88,35 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Users"
+        component={UsersScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Usuarios',
+          tabBarIcon: ({ color }) => <TabBarIcon name="user-circle-o" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Projects"
+        component={ProjectsScreen}
+        options={{
+          title: 'Proyectos',
+          tabBarIcon: ({ color }) => <TabBarIcon name="list-ul" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Registrations"
+        component={RegistrationsScreen}
+        options={{
+          title: 'Inscripciones',
+          tabBarIcon: ({ color }) => <TabBarIcon name="tags" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Progress"
+        component={ProgressScreen}
+        options={{
+          title: 'Avances',
+          tabBarIcon: ({ color }) => <TabBarIcon name="line-chart" color={color} />,
         }}
       />
     </BottomTab.Navigator>
